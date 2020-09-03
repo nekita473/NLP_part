@@ -1,7 +1,17 @@
 import pandas as pd
-answers = pd.read_csv('Local_Answers_v_0_9_1.csv')
+answers = pd.read_csv('Local_Answers_v_0_9_2.csv')
 numerical_indexes = [1, 5, 6, 8, 9, 10, 11, 18]
 intents = ['diag', 'cam', 'os', 'ram', 'rom', 'weight', 'acc', 'sim']
+dims = {
+    'diag': 'дюйм',
+    'cam': 'мегапиксель',
+    'os': 'android',
+    'ram': 'гигабайт',
+    'rom': 'гигабайт',
+    'weight': 'грамм',
+    'acc': 'миллиампер',
+    'sim': 'симкарта'
+}
 numerical_answers = answers.iloc[:, numerical_indexes]
 numerical_answers.columns = intents
 
@@ -51,4 +61,4 @@ result['token_id'] = sum(tokens_ids_main, [])
 result['token'] = sum(tokens_main, [])
 result['num_slot'] = sum(num_slots, [])
 result['dim_slot'] = sum(dim_slots, [])
-result.to_csv('Labeling_data_per_word.csv', encoding='windows-1251', index=False)
+result.to_csv('result.csv', encoding='windows-1251', index=False)
